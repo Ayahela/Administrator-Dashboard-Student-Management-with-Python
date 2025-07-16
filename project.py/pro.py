@@ -58,4 +58,36 @@ lbl_Address=Label(Manage_Frame,text='Address',bg='white')
 lbl_Address.grid(row=7,column=0, padx=1, pady=5)
 txt_Address=Entry(Manage_Frame,bd='2')
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
+########################################
+#-------Management buttons------
+btn_frame=Frame(root, bg="white")
+btn_frame.place(x=1137,y=435,width=210,height=253)
+title1=Label( 
+             btn_frame,
+             text="Manage Students",
+             font=('Deco',14,'bold'),
+             fg='darkred', 
+             bg='white')
+title1.pack(fill=X)
+
+add_btn = Button(btn_frame, text="Add Student", bg="darkred", fg="white")
+add_btn.place(x=33, y=30, width=150, height=30)
+
+del_btn = Button(btn_frame, text="Delete Student", bg="darkred", fg="white")
+del_btn.place(x=33, y=65, width=150, height=30)
+
+update_btn = Button(btn_frame, text="Update Data", bg="darkred", fg="white")
+update_btn.place(x=33, y=100, width=150, height=30)
+
+clear_btn = Button(btn_frame, text="Clear Fields", bg="darkred", fg="white")
+clear_btn.place(x=33, y=135, width=150, height=30)
+
+about_btn = Button(btn_frame, text="About Us", bg="darkred", fg="white")
+about_btn.place(x=33, y=170, width=150, height=30)
+
+exit_btn = Button(btn_frame, text="Exit", bg="darkred", fg="white")
+exit_btn.place(x=33, y=205, width=150, height=30)
+
+
+
 root.mainloop()
