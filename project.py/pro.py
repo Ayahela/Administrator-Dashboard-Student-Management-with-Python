@@ -24,7 +24,19 @@ bg="darkred",
 font=('momospace',14,'bold'),
 fg="white"
 )
-title.pack(fill='x')    
+title.pack(fill='x') 
+#-----variables------
+
+id_var=StringVar()
+name_var=StringVar()
+email_var=StringVar()
+phone_var=StringVar()
+certificate_var=StringVar()
+gender_var=StringVar()
+address_var=StringVar()
+se_var=StringVar()
+#----------------------------
+
 root.config(background='gray')
 #########################################################
 Manage_Frame = Frame(root, bg='white')
@@ -40,38 +52,38 @@ lbl.grid(row=0, column=0, columnspan=2, pady=10)
 #ID
 lbl_ID=Label(Manage_Frame,text='ID',bg='white')
 lbl_ID.grid(row=1,column=0, padx=7, pady=5)
-txt_ID=Entry(Manage_Frame,bd='2')    #to make border
+txt_ID=Entry(Manage_Frame,bd='2',textvariable=id_var)    #to make border
 txt_ID.grid(row=1,column=1, padx=7, pady=5)
 #Name
 lbl_name=Label(Manage_Frame,text='Name',bg='white')
 lbl_name.grid(row=2,column=0, padx=7, pady=5)
-txt_name=Entry(Manage_Frame,bd='2')    #to make border
+txt_name=Entry(Manage_Frame,bd='2',textvariable=name_var)    #to make border
 txt_name.grid(row=2,column=1, padx=7, pady=5)
 #Email
 lbl_Email=Label(Manage_Frame,text='Email',bg='white')
 lbl_Email.grid(row=3,column=0, padx=7, pady=5)
-txt_Email=Entry(Manage_Frame,bd='2')
+txt_Email=Entry(Manage_Frame,bd='2',textvariable=email_var)
 txt_Email.grid(row=3,column=1, padx=7, pady=5)
 ###phone
 lbl_Phone=Label(Manage_Frame,text='Phone',bg='white')
 lbl_Phone.grid(row=4,column=0, padx=7, pady=5)
-txt_Phone=Entry(Manage_Frame,bd='2')
+txt_Phone=Entry(Manage_Frame,bd='2',textvariable=phone_var)
 txt_Phone.grid(row=4,column=1, padx=7, pady=5)
 ####certificate
 lbl_Certificate=Label(Manage_Frame,text='Certificate',bg='white')
 lbl_Certificate.grid(row=5,column=0, padx=1, pady=5)
-txt_Certificate=Entry(Manage_Frame,bd='2')
+txt_Certificate=Entry(Manage_Frame,bd='2',textvariable=certificate_var)
 txt_Certificate.grid(row=5,column=1, padx=1, pady=5)
 #Gender
 lbl_Gender=Label(Manage_Frame,text='Gender',bg='white')
 lbl_Gender.grid(row=6,column=0, padx=1, pady=5)
-combo_Gender = ttk.Combobox(Manage_Frame)
+combo_Gender = ttk.Combobox(Manage_Frame,textvariable=gender_var)
 combo_Gender['values'] = ['Male', 'Female']
 combo_Gender.grid(row=6,column=1, padx=1, pady=5)
 #address
 lbl_Address=Label(Manage_Frame,text='Address',bg='white')
 lbl_Address.grid(row=7,column=0, padx=1, pady=5)
-txt_Address=Entry(Manage_Frame,bd='2')
+txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
 ########################################
 #-------Management buttons------
@@ -102,7 +114,7 @@ about_btn.place(x=33, y=170, width=150, height=30)
 
 exit_btn = Button(btn_frame, text="Exit", bg="darkred", fg="white")
 exit_btn.place(x=33, y=205, width=150, height=30)
-<<<<<<< HEAD
+# <<<<<<< HEAD
 #show dietals
 Dietals_Frame=Frame(root,bg='#F2F4F4')
 Dietals_Frame.place(x=1,y=82,width=1134,height=605)
@@ -111,9 +123,9 @@ Scroll_x=Scrollbar(Dietals_Frame,orient=HORIZONTAL)
 Scroll_y=Scrollbar(Dietals_Frame,orient=VERTICAL)
 #treeview
 Student_Table=ttk.Treeview(Dietals_Frame,
-                          columns=('address','gender','certie','phone','emil','name','id'),
-                          xscrollcommand=Scroll_x.set,
-                          yscrollcommand=Scroll_y.set)
+columns=('address','gender','certie','phone','emil','name','id'),
+xscrollcommand=Scroll_x.set,
+yscrollcommand=Scroll_y.set)
 Student_Table.place(x=1,y=1,width=1130,height=587)
 Scroll_x.pack(side=BOTTOM,fill=X)
 Scroll_y.pack(side=LEFT,fill=Y)
@@ -147,9 +159,11 @@ combo_search=ttk.Combobox(search_frame,justify='left')
 combo_search['value']=('Id','Name','Email')
 combo_search.place(x=120,y=12)
 
-search_Entry=Entry(search_frame,justify='left',bd='2')
+search_Entry=Entry(search_frame,justify='left',bd='2',textvariable=se_var)
 search_Entry.place(x=270,y=12)
 
 se_btn=Button(search_frame,text='search',bg="darkred")
 se_btn.place(x=400,y=10,width=100,height=25)
+
+
 root.mainloop()
