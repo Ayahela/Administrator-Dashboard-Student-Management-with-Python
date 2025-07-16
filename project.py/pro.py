@@ -3,6 +3,7 @@ from tkinter import ttk
 root=Tk()
 root.geometry('1350x690')
 root.title('student managment app')
+# root.resizable(False,False)
 title=Label(root, 
 text='Student registration system',
 bg="darkred",
@@ -88,6 +89,20 @@ about_btn.place(x=33, y=170, width=150, height=30)
 exit_btn = Button(btn_frame, text="Exit", bg="darkred", fg="white")
 exit_btn.place(x=33, y=205, width=150, height=30)
 
+#-----search manage-----
+search_frame=Frame(root,bg='white')
+search_frame.place(x=1,y=30,width=1134,height=50)
 
+lbl_search=Label(search_frame,text='search for a student',bg='white')
+lbl_search.place(x=10,y=12)
 
+combo_search=ttk.Combobox(search_frame,justify='left')
+combo_search['value']=('Id','Name','Email')
+combo_search.place(x=120,y=12)
+
+search_Entry=Entry(search_frame,justify='left',bd='2')
+search_Entry.place(x=270,y=12)
+
+se_btn=Button(search_frame,text='search',bg="darkred")
+se_btn.place(x=400,y=10,width=100,height=25)
 root.mainloop()
