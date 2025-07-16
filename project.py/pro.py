@@ -1,7 +1,21 @@
+def Center():
+   #The size of the window
+   win_width  = 1350
+   win_height = 690
+   #get the size of the screen
+   screen_width = root.winfo_screenwidth()
+   screen_height = root.winfo_screenheight()
+   #place the window on the x-y coordinates
+   x = (screen_width // 2) - (win_width // 2)
+   y = (screen_height // 2) - (win_height // 2)
+   #center the window 
+   root.geometry(f"{win_width}x{win_height}+{x}+{y}")
+   root.resizable(False,False)
 from tkinter import *
 from tkinter import ttk
 root=Tk()
-root.geometry('1350x690')
+Center()
+#root.geometry('1350x690')
 root.title('student managment app')
 title=Label(root, 
 text='Student registration system',
@@ -87,7 +101,36 @@ about_btn.place(x=33, y=170, width=150, height=30)
 
 exit_btn = Button(btn_frame, text="Exit", bg="darkred", fg="white")
 exit_btn.place(x=33, y=205, width=150, height=30)
-
-
+#show dietals
+Dietals_Frame=Frame(root,bg='#F2F4F4')
+Dietals_Frame.place(x=1,y=82,width=1134,height=605)
+#scroll creation
+Scroll_x=Scrollbar(Dietals_Frame,orient=HORIZONTAL)
+Scroll_y=Scrollbar(Dietals_Frame,orient=VERTICAL)
+#treeview
+Student_Table=ttk.Treeview(Dietals_Frame,
+                          columns=('address','gender','certie','phone','emil','name','id'),
+                          xscrollcommand=Scroll_x.set,
+                          yscrollcommand=Scroll_y.set)
+Student_Table.place(x=1,y=1,width=1130,height=587)
+Scroll_x.pack(side=BOTTOM,fill=X)
+Scroll_y.pack(side=LEFT,fill=Y)
+Scroll_x.config(command=Student_Table.xview)
+Scroll_y.config(command=Student_Table.yview)
+Student_Table['show']='headings'
+Student_Table.heading('address',text='Stusent Address')
+Student_Table.heading('gender',text='Stusent Gender')
+Student_Table.heading('certie',text='Student qualifications')
+Student_Table.heading('phone',text='Stusent Phone')
+Student_Table.heading('emil',text='Stusent Emil')
+Student_Table.heading('name',text='Stusent Name')
+Student_Table.heading('id',text='Stusent ID')
+Student_Table.column('address',width=125)
+Student_Table.column('gender',width=30)
+Student_Table.column('certie',width=65)
+Student_Table.column('phone',width=65)
+Student_Table.column('emil',width=70)
+Student_Table.column('name',width=100)
+Student_Table.column('id',width=17)
 
 root.mainloop()
