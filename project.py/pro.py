@@ -98,7 +98,7 @@ def add_student(self):
                                                       self.name_var.get(),
                                                        self.phone_var.get(),
                                                         self.email_var.get(),
-                                                        self.certificate_var.get(),
+                                                   self.certificate_var.get(),
                                                         self.gender_var.get(),
                                                         self.address_var.get()
                                                          ))
