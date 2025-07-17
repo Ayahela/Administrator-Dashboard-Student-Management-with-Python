@@ -88,28 +88,31 @@ txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
 ########################################
 #-------add+con----------------
-fetch_all()
+# fetch_all()
+   
 def add_student(self):
     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
     cur=con.cursor()
     cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
-                                                        id_var.get(),
-                                                        name_var.get(),
-                                                        phone_var.get(),
-                                                        email_var.get(),
-                                                        certificate_var.get(),
-                                                        gender_var.get(),
-                                                        address_var.get()
+                                                      self.id_var.get(),
+                                                      self.name_var.get(),
+                                                       self.phone_var.get(),
+                                                        self.email_var.get(),
+                                                        self.certificate_var.get(),
+                                                        self.gender_var.get(),
+                                                        self.address_var.get()
                                                          ))
     con.commit()
     con.close()
+    self.fetch_all()
+
 def fetch_all(self):
     con =pymysql.connect(host='localhost',user='root',password='',database='stud2') 
     cur=con.cursor()
     cur.execute('select * from student2')
     rows=cur.fetchall()
     if len (rows)!= 0:
-      self.student_table.delet(*self.student_table.get_childern())
+      self.student_table.delete(*self.student_table.get_children)
       for row in rows:
         self.student_table.insert("",END,value=row)
       con.commit()  
@@ -195,23 +198,6 @@ search_Entry.place(x=270,y=12)
 se_btn=Button(search_frame,text='search',bg="darkred", fg="white")
 se_btn.place(x=400,y=10,width=100,height=25)
 
-
-  #--------con +add------------
- 
-# def add_student():
-#     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
-#     cur=con.cursor()
-#     cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
-#                                                         address_var.get(),
-#                                                         gender_var.get(),
-#                                                         certificate_var.get(),
-#                                                         phone_var.get(),
-#                                                         email_var.get(),
-#                                                         name_var.get(),
-#                                                         id_var.get()
-#                                                          ))
-#     con.commit()
-#     con.close()
  
 
 root.mainloop()
