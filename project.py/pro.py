@@ -88,7 +88,8 @@ txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
 ########################################
 #-------add+con----------------
-def add_student():
+fetch_all()
+def add_student(self):
     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
     cur=con.cursor()
     cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
@@ -102,6 +103,18 @@ def add_student():
                                                          ))
     con.commit()
     con.close()
+def fetch_all(self):
+    con =pymysql.connect(host='localhost',user='root',password='',database='stud2') 
+    cur=con.cursor()
+    cur.execute('select * from student2')
+    rows=cur.fetchall()
+    if len (rows)!= 0:
+      self.student_table.delet(*self.student_table.get_childern())
+      for row in rows:
+        self.student_table.insert("",END,value=row)
+      con.commit()  
+    con.close()  
+
 ##############################
 #-------Management buttons------
 btn_frame=Frame(root, bg="white")
@@ -184,6 +197,7 @@ se_btn.place(x=400,y=10,width=100,height=25)
 
 
   #--------con +add------------
+ 
 # def add_student():
 #     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
 #     cur=con.cursor()
@@ -198,6 +212,6 @@ se_btn.place(x=400,y=10,width=100,height=25)
 #                                                          ))
 #     con.commit()
 #     con.close()
-   
+ 
 
 root.mainloop()
