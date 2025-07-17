@@ -13,6 +13,7 @@ def Center():
    root.resizable(False,False)
 from tkinter import *
 from tkinter import ttk
+import pymysql
 root=Tk()
 Center()
 #root.geometry('1350x690')
@@ -86,6 +87,22 @@ lbl_Address.grid(row=7,column=0, padx=1, pady=5)
 txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
 ########################################
+#-------add+con----------------
+def add_student():
+    con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
+    cur=con.cursor()
+    cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
+                                                        id_var.get(),
+                                                        name_var.get(),
+                                                        phone_var.get(),
+                                                        email_var.get(),
+                                                        certificate_var.get(),
+                                                        gender_var.get(),
+                                                        address_var.get()
+                                                         ))
+    con.commit()
+    con.close()
+##############################
 #-------Management buttons------
 btn_frame=Frame(root, bg="white")
 btn_frame.place(x=1137,y=435,width=210,height=253)
@@ -97,7 +114,7 @@ title1=Label(
              bg='white')
 title1.pack(fill=X)
 
-add_btn = Button(btn_frame, text="Add Student", bg="darkred", fg="white")
+add_btn = Button(btn_frame, text="Add Student", bg="darkred", fg="white",command=add_student)
 add_btn.place(x=33, y=30, width=150, height=30)
 
 del_btn = Button(btn_frame, text="Delete Student", bg="darkred", fg="white")
@@ -165,5 +182,22 @@ search_Entry.place(x=270,y=12)
 se_btn=Button(search_frame,text='search',bg="darkred", fg="white")
 se_btn.place(x=400,y=10,width=100,height=25)
 
+
+  #--------con +add------------
+# def add_student():
+#     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
+#     cur=con.cursor()
+#     cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
+#                                                         address_var.get(),
+#                                                         gender_var.get(),
+#                                                         certificate_var.get(),
+#                                                         phone_var.get(),
+#                                                         email_var.get(),
+#                                                         name_var.get(),
+#                                                         id_var.get()
+#                                                          ))
+#     con.commit()
+#     con.close()
+   
 
 root.mainloop()
