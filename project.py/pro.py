@@ -88,7 +88,7 @@ txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
 ########################################
 #-------add+con----------------
-# fetch_all()
+
    
 def add_student(self):
     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
