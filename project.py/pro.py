@@ -143,7 +143,7 @@ Scroll_x=Scrollbar(Dietals_Frame,orient=HORIZONTAL)
 Scroll_y=Scrollbar(Dietals_Frame,orient=VERTICAL)
 #treeview
 Student_Table=ttk.Treeview(Dietals_Frame,
-columns=('address','gender','certie','phone','emil','name','id'),
+columns=('id','name','phone','email','certie','gender','address'),
 xscrollcommand=Scroll_x.set,
 yscrollcommand=Scroll_y.set)
 Student_Table.place(x=1,y=1,width=1130,height=587)
@@ -152,20 +152,21 @@ Scroll_y.pack(side=LEFT,fill=Y)
 Scroll_x.config(command=Student_Table.xview)
 Scroll_y.config(command=Student_Table.yview)
 Student_Table['show']='headings'
-Student_Table.heading('address',text='Student Address')
-Student_Table.heading('gender',text='Student Gender')
-Student_Table.heading('certie',text='Student qualifications')
-Student_Table.heading('phone',text='Student Phone')
-Student_Table.heading('emil',text='Student Email')
+Student_Table.heading('id',text='Student id')
 Student_Table.heading('name',text='Student Name')
-Student_Table.heading('id',text='Student ID')
-Student_Table.column('address',width=125)
-Student_Table.column('gender',width=30)
-Student_Table.column('certie',width=65)
+Student_Table.heading('phone',text='Student Phone')
+Student_Table.heading('email',text='Student Email')
+
+Student_Table.heading('certie',text='Student qualifications')
+Student_Table.heading('gender',text='Student Gender')
+Student_Table.heading('address',text='Student Address')
+Student_Table.column('id',width=20)
+Student_Table.column('gender',width=20)
+Student_Table.column('certie',width=50)
 Student_Table.column('phone',width=65)
-Student_Table.column('emil',width=70)
-Student_Table.column('name',width=100)
-Student_Table.column('id',width=17)
+Student_Table.column('email',width=80)
+Student_Table.column('name',width=100) 
+Student_Table.column('address',width=60)
 
 #---------fetch function--------------
 def fetch_all():
