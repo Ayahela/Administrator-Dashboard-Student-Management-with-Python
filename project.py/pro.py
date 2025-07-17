@@ -88,8 +88,8 @@ txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
 ########################################
 #-------add+con----------------
-fetch_all()
-def add_student(self):
+#fetch_all()
+def add_student():
     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
     cur=con.cursor()
     cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
@@ -103,17 +103,7 @@ def add_student(self):
                                                          ))
     con.commit()
     con.close()
-def fetch_all(self):
-    con =pymysql.connect(host='localhost',user='root',password='',database='stud2') 
-    cur=con.cursor()
-    cur.execute('select * from student2')
-    rows=cur.fetchall()
-    if len (rows)!= 0:
-      self.student_table.delet(*self.student_table.get_childern())
-      for row in rows:
-        self.student_table.insert("",END,value=row)
-      con.commit()  
-    con.close()  
+
 
 ##############################
 #-------Management buttons------
@@ -177,6 +167,22 @@ Student_Table.column('emil',width=70)
 Student_Table.column('name',width=100)
 Student_Table.column('id',width=17)
 
+#---------fetch function--------------
+def fetch_all():
+    con =pymysql.connect(host='localhost',user='root',password='',database='stud2') 
+    cur=con.cursor()
+    cur.execute('select * from student2')
+    rows=cur.fetchall()
+    if len (rows)!= 0:
+      Student_Table.delete(*Student_Table.get_children())
+      for row in rows:
+        Student_Table.insert("",END,value=row)
+      con.commit()  
+    con.close()  
+########################################
+#-----------calling fetch function--------
+fetch_all()
+#######################################
 
 #-----search manage-----
 search_frame=Frame(root,bg='white')
@@ -195,23 +201,6 @@ search_Entry.place(x=270,y=12)
 se_btn=Button(search_frame,text='search',bg="darkred", fg="white")
 se_btn.place(x=400,y=10,width=100,height=25)
 
-
-  #--------con +add------------
- 
-# def add_student():
-#     con = pymysql.connect(host='localhost',user='root', password='', database='stud2')
-#     cur=con.cursor()
-#     cur.execute("insert into student2 values(%s,%s,%s,%s,%s,%s,%s)",(
-#                                                         address_var.get(),
-#                                                         gender_var.get(),
-#                                                         certificate_var.get(),
-#                                                         phone_var.get(),
-#                                                         email_var.get(),
-#                                                         name_var.get(),
-#                                                         id_var.get()
-#                                                          ))
-#     con.commit()
-#     con.close()
  
 
 root.mainloop()
