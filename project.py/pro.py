@@ -219,7 +219,6 @@ combo_search.place(x=120,y=12)
 
 search_Entry=Entry(search_frame,justify='left',bd='2',textvariable=se_var)
 search_Entry.place(x=270,y=12)
-
 se_btn=Button(search_frame,text='search',bg="darkred", fg="white")
 se_btn.place(x=400,y=10,width=100,height=25)
 root.mainloop()
