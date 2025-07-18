@@ -36,6 +36,8 @@ certificate_var=StringVar()
 gender_var=StringVar()
 address_var=StringVar()
 se_var=StringVar()
+dell_var=StringVar()
+qulification_var=StringVar()
 #----------------------------
 
 root.config(background='gray')
@@ -81,11 +83,20 @@ lbl_Gender.grid(row=6,column=0, padx=1, pady=5)
 combo_Gender = ttk.Combobox(Manage_Frame,textvariable=gender_var)
 combo_Gender['values'] = ['Male', 'Female']
 combo_Gender.grid(row=6,column=1, padx=1, pady=5)
+
 #address
 lbl_Address=Label(Manage_Frame,text='Address',bg='white')
 lbl_Address.grid(row=7,column=0, padx=1, pady=5)
 txt_Address=Entry(Manage_Frame,bd='2',textvariable=address_var)
 txt_Address.grid(row=7,column=1, padx=1, pady=5)
+#delete
+lbl_delete=Label(Manage_Frame,fg='red',bg='white',text='delete student')
+lbl_delete.grid(row=8, column=0, padx=7, pady=5)
+
+delete_Entry=Entry(Manage_Frame,bd=2,justify='center', textvariable=id_var)
+delete_Entry.grid(row=8, column=1, padx=7, pady=5)
+
+
 ########################################
 #-------add+con----------------
 #fetch_all()
@@ -98,12 +109,21 @@ def add_student():
                                                         phone_var.get(),
                                                         email_var.get(),
                                                         certificate_var.get(),
+
                                                         gender_var.get(),
                                                         address_var.get()
                                                          ))
     con.commit()
+    fetch_all()
     con.close()
-
+#-----------Delete function---------    
+def delete():
+    con =pymysql.connect(host='localhost',user='root',password='',database='stud2') 
+    cur=con.cursor()   
+    cur.execute('delete from student2 where id=%s',id_var.get())
+    con.commit()
+    fetch_all()
+    con.close()
 
 ##############################
 #-------Management buttons------
@@ -120,7 +140,7 @@ title1.pack(fill=X)
 add_btn = Button(btn_frame, text="Add Student", bg="darkred", fg="white",command=add_student)
 add_btn.place(x=33, y=30, width=150, height=30)
 
-del_btn = Button(btn_frame, text="Delete Student", bg="darkred", fg="white")
+del_btn = Button(btn_frame, text="Delete Student", bg="darkred", fg="white",command=delete)
 del_btn.place(x=33, y=65, width=150, height=30)
 
 update_btn = Button(btn_frame, text="Update Data", bg="darkred", fg="white")
@@ -179,7 +199,8 @@ def fetch_all():
       for row in rows:
         Student_Table.insert("",END,value=row)
       con.commit()  
-    con.close()  
+    con.close() 
+
 ########################################
 #-----------calling fetch function--------
 fetch_all()
@@ -201,7 +222,4 @@ search_Entry.place(x=270,y=12)
 
 se_btn=Button(search_frame,text='search',bg="darkred", fg="white")
 se_btn.place(x=400,y=10,width=100,height=25)
-
- 
-
 root.mainloop()
